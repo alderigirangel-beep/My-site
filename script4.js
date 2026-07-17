@@ -45,11 +45,12 @@ function calcularFrete() {
             }
         }
 
-        valorFrete = freteCalculado; // Adicionado para salvar o valor correto na variável global
-    } // <-- CHAVE ADICIONADA (Fecha o else principal)
+        valorFrete = freteCalculado; // Salva o frete na variável global
+    } // <-- ESSA CHAVE ESTAVA FALTANDO!
 
     atualizarCarrinho();
 }
+
 
 // --- PREPARAR DADOS PARA ENVIO POR E-MAIL ---
 function prepararEnvioEmail() {
