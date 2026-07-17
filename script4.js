@@ -161,13 +161,6 @@ function calcularFrete() {
             }
         }
 
-        // TRAVA DE SEGURANÃ‡A: NUNCA ULTRAPASSA R$ 20,00
-        if (freteCalculado > 20.00) {
-            valorFrete = 20.00;
-        } else {
-            valorFrete = freteCalculado;
-        }
-    }
 
     atualizarCarrinho();
 }
