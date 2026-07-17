@@ -1,30 +1,30 @@
-// --- CONTROLE DO PLAYER DE MÚSICA ---
+// --- CONTROLE DO PLAYER DE MÃšSICA ---
 function toggleMusica() {
     const musica = document.getElementById("musica-fundo");
     const botao = document.getElementById("btn-player");
 
     if (musica.paused) {
         musica.play().then(() => {
-            botao.innerHTML = "⏸ Pause • Radiohead ⏸";
+            botao.innerHTML = "â¸ Pause â€¢ Radiohead â¸";
             botao.style.background = "#F5A9B8";
         }).catch(err => {
-            console.log("Erro ao reproduzir áudio:", err);
+            console.log("Erro ao reproduzir Ã¡udio:", err);
         });
     } else {
         musica.pause();
-        botao.innerHTML = "♫⋆｡♪₊˚♬ﾟ. Ouvir Música♫⋆｡♪₊˚♬ﾟ.";
+        botao.innerHTML = "â™«â‹†ï½¡â™ªâ‚ŠËšâ™¬ï¾Ÿ. Ouvir MÃºsicaâ™«â‹†ï½¡â™ªâ‚ŠËšâ™¬ï¾Ÿ.";
         botao.style.background = "";
     }
 }
 
-// --- VARIÁVEIS GERAIS DO PRODUTO SELECIONADO NO MODAL ---
+// --- VARIÃVEIS GERAIS DO PRODUTO SELECIONADO NO MODAL ---
 let produtoAtual = {
     nome: '',
     preco: 0,
     isCustom: false
 };
 
-// --- ABRIR MODAL DE OPÇÕES DE PRODUTO ---
+// --- ABRIR MODAL DE OPÃ‡Ã•ES DE PRODUTO ---
 function abrirOpcoesProduto(nome, preco, temas = [], isCustom = false) {
     produtoAtual = { nome, preco, isCustom };
 
@@ -62,7 +62,7 @@ function fecharModalProduto() {
     document.getElementById("modal-produto").classList.add("oculto");
 }
 
-// --- CONFIRMAR ADIÇÃO DO PRODUTO AO CARRINHO (TRAVA R$ 20,00) ---
+// --- CONFIRMAR ADIÃ‡ÃƒO DO PRODUTO AO CARRINHO (TRAVA R$ 20,00) ---
 function confirmarAdicaoCarrinho() {
     const qtd = parseInt(document.getElementById("modal-qtd").value) || 1;
     const selectTema = document.getElementById("modal-select-tema");
@@ -73,7 +73,7 @@ function confirmarAdicaoCarrinho() {
     if (produtoAtual.isCustom) {
         detalhe = inputCustom.value.trim();
         if (!detalhe) {
-            alert("Por favor, escreva os itens ou preferências para a sua Box!");
+            alert("Por favor, escreva os itens ou preferÃªncias para a sua Box!");
             return;
         }
     } else {
@@ -85,7 +85,7 @@ function confirmarAdicaoCarrinho() {
     // CALCULA SE O NOVO SUB-TOTAL DE PRODUTOS ULTRAPASSARIA R$ 20,00
     let subtotalAtual = carrinho.reduce((acc, item) => acc + item.preco, 0);
     if (subtotalAtual + precoTotalItem > 20.00) {
-        alert("O limite máximo por compra é de R$ 20,00 em produtos! ૮₍ ˶•⤙•˶ ₎α");
+        alert("O limite mÃ¡ximo por compra Ã© de R$ 20,00 em produtos! à«®â‚ Ë¶â€¢â¤™â€¢Ë¶ â‚ŽÎ±");
         return;
     }
 
@@ -95,7 +95,7 @@ function confirmarAdicaoCarrinho() {
     fecharModalProduto();
 }
 
-// --- LÓGICA DO CARRINHO LATERAL ---
+// --- LÃ“GICA DO CARRINHO LATERAL ---
 let carrinho = [];
 let valorFrete = 0;
 
@@ -114,7 +114,7 @@ function removerDoCarrinho(index) {
     atualizarCarrinho();
 }
 
-// --- CÁLCULO DE FRETE REGIONAL E POR CIDADE (MÁXIMO R$ 20,00) ---
+// --- CÃLCULO DE FRETE REGIONAL E POR CIDADE (MÃXIMO R$ 20,00) ---
 function calcularFrete() {
     const estado = document.getElementById("estado") ? document.getElementById("estado").value : "";
     const cidadeInput = document.getElementById("cidade") ? document.getElementById("cidade").value.trim().toLowerCase() : "";
@@ -134,13 +134,13 @@ function calcularFrete() {
 
         let freteCalculado = fretesBase[estado] || 25.00;
 
-        // REGRAS ESPECÍFICAS POR CIDADE
+        // REGRAS ESPECÃFICAS POR CIDADE
         if (estado === 'SP') {
             const cidadesLocais = ['salto', 'itu', 'indaiatuba', 'sorocaba', 'campinas'];
             
             if (cidadesLocais.includes(cidadeInput)) {
                 freteCalculado = 7.00;
-            } else if (cidadeInput === 'são paulo' || cidadeInput === 'sao paulo' || cidadeInput === 'sp') {
+            } else if (cidadeInput === 'sÃ£o paulo' || cidadeInput === 'sao paulo' || cidadeInput === 'sp') {
                 freteCalculado = 10.00;
             } else {
                 freteCalculado = 14.00;
@@ -161,7 +161,7 @@ function calcularFrete() {
             }
         }
 
-        // TRAVA DE SEGURANÇA: NUNCA ULTRAPASSA R$ 20,00
+        // TRAVA DE SEGURANÃ‡A: NUNCA ULTRAPASSA R$ 20,00
         if (freteCalculado > 20.00) {
             valorFrete = 20.00;
         } else {
@@ -185,7 +185,7 @@ function atualizarCarrinho() {
     contador.innerText = carrinho.length;
 
     if (carrinho.length === 0) {
-        listaHtml.innerHTML = '<li class="carrinho-vazio">Seu carrinho está vazio...૮₍˶ ╥ ‸ ╥ ⑅₎α</li>';
+        listaHtml.innerHTML = '<li class="carrinho-vazio">Seu carrinho estÃ¡ vazio...à«®â‚Ë¶ â•¥ â€¸ â•¥ â‘…â‚ŽÎ±</li>';
         if (valorTotalEl) valorTotalEl.innerText = "R$ 0,00";
         if (subtotalEl) subtotalEl.innerText = "R$ 0,00";
         if (freteEl) freteEl.innerText = "R$ 0,00";
@@ -200,7 +200,7 @@ function atualizarCarrinho() {
         li.className = "item-carrinho";
         li.innerHTML = `
             <span>${item.nome} - R$ ${item.preco.toFixed(2).replace('.', ',')}</span>
-            <button class="btn-remover" onclick="removerDoCarrinho(${index})">✖</button>
+            <button class="btn-remover" onclick="removerDoCarrinho(${index})">âœ–</button>
         `;
         listaHtml.appendChild(li);
     });
@@ -229,7 +229,7 @@ function filtrarProdutos(categoria, elemento) {
     });
 }
 
-// --- PREPARAR DADOS PARA ENVIO POR E-MAIL & RESETA TUDO ---
+// --- PREPARAR DADOS PARA ENVIO POR E-MAIL ---
 function prepararEnvioEmail() {
     let subtotal = carrinho.reduce((acc, cur) => acc + cur.preco, 0);
     let total = subtotal + valorFrete;
@@ -246,14 +246,8 @@ function prepararEnvioEmail() {
     if (inputFrete) inputFrete.value = `R$ ${valorFrete.toFixed(2)}`;
     if (inputTotal) inputTotal.value = `R$ ${total.toFixed(2)}`;
 
-    // LIMPEZA AUTOMÁTICA DOS CAMPOS APÓS O ENVIO
-    setTimeout(() => {
-        document.getElementById("form-pedido").reset();
-        carrinho = [];
-        valorFrete = 0;
-        atualizarCarrinho();
-        togglePainelCarrinho();
-    }, 1000);
+    // Removido o reset() imediato para nÃ£o interromper o upload do arquivo pesado (comprovante).
+    // O prÃ³prio redirecionamento do Formspree cuidarÃ¡ de descarregar a pÃ¡gina atual.
 }
 
 // --- ABRIR FOTO EM TAMANHO GRANDE (LIGHTBOX) ---
