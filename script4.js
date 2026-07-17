@@ -62,7 +62,7 @@ function fecharModalProduto() {
     document.getElementById("modal-produto").classList.add("oculto");
 }
 
-// --- CONFIRMAR ADIÇÃO DO PRODUTO AO CARRINHO (TRAVA R$ 20,00) ---
+// --- CONFIRMAR ADIÇÃO DO PRODUTO AO CARRINHO (SEM LIMITE DE VALOR) ---
 function confirmarAdicaoCarrinho() {
     const qtd = parseInt(document.getElementById("modal-qtd").value) || 1;
     const selectTema = document.getElementById("modal-select-tema");
@@ -81,14 +81,6 @@ function confirmarAdicaoCarrinho() {
     }
 
     const precoTotalItem = produtoAtual.preco * qtd;
-
-    // CALCULA SE O NOVO SUB-TOTAL DE PRODUTOS ULTRAPASSARIA R$ 20,00
-    let subtotalAtual = carrinho.reduce((acc, item) => acc + item.preco, 0);
-    if (subtotalAtual + precoTotalItem > 20.00) {
-        alert("O limite máximo por compra é de R$ 20,00 em produtos! 𖦹‎ 𖦹‎");
-        return;
-    }
-
     const nomeComDetalhe = `${produtoAtual.nome} (${detalhe}) [x${qtd}]`;
 
     adicionarAoCarrinho(nomeComDetalhe, precoTotalItem);
@@ -114,7 +106,7 @@ function removerDoCarrinho(index) {
     atualizarCarrinho();
 }
 
-// --- CÁLCULO DE FRETE REGIONAL E POR CIDADE (MÁXIMO R$ 20,00) ---
+// --- CÁLCULO DE FRETE REGIONAL E POR CIDADE ---
 function calcularFrete() {
     const estado = document.getElementById("estado") ? document.getElementById("estado").value : "";
     const cidadeInput = document.getElementById("cidade") ? document.getElementById("cidade").value.trim().toLowerCase() : "";
@@ -161,8 +153,8 @@ function calcularFrete() {
             }
         }
 
-        valorFrete = freteCalculado; // Salva o frete calculado na variável global
-    } // <--- CHAVE FIXADA AQUI!
+        valorFrete = freteCalculado;
+    }
 
     atualizarCarrinho();
 }
@@ -224,25 +216,26 @@ function filtrarProdutos(categoria, elemento) {
     });
 }
 
-// --- PREPARAR DADOS PARA ENVIO POR E-MAIL ---
+// --- PREPARAR DADOS PARA ENVIO POR E-MAIL (PROTEGIDO CONTRA ERROS DE REDE) ---
 function prepararEnvioEmail() {
-    let subtotal = carrinho.reduce((acc, cur) => acc + cur.preco, 0);
-    let total = subtotal + valorFrete;
+    try {
+        let subtotal = carrinho.reduce((acc, cur) => acc + cur.preco, 0);
+        let total = subtotal + valorFrete;
 
-    let listaItensTexto = carrinho.map(i => `${i.nome} - R$ ${i.preco.toFixed(2)}`).join(" | ");
+        let listaItensTexto = carrinho.map(i => `${i.nome} - R$ ${i.preco.toFixed(2)}`).join(" | ");
 
-    const inputItens = document.getElementById("input-itens-pedido");
-    const inputSubtotal = document.getElementById("input-subtotal-pedido");
-    const inputFrete = document.getElementById("input-frete-pedido");
-    const inputTotal = document.getElementById("input-total-pedido");
+        const inputItens = document.getElementById("input-itens-pedido");
+        const inputSubtotal = document.getElementById("input-subtotal-pedido");
+        const inputFrete = document.getElementById("input-frete-pedido");
+        const inputTotal = document.getElementById("input-total-pedido");
 
-    if (inputItens) inputItens.value = listaItensTexto;
-    if (inputSubtotal) inputSubtotal.value = `R$ ${subtotal.toFixed(2)}`;
-    if (inputFrete) inputFrete.value = `R$ ${valorFrete.toFixed(2)}`;
-    if (inputTotal) inputTotal.value = `R$ ${total.toFixed(2)}`;
-
-    // Removido o reset() imediato para não interromper o upload do arquivo pesado (comprovante).
-    // O próprio redirecionamento do Formspree cuidará de descarregar a página atual.
+        if (inputItens) inputItens.value = listaItensTexto;
+        if (inputSubtotal) inputSubtotal.value = `R$ ${subtotal.toFixed(2)}`;
+        if (inputFrete) inputFrete.value = `R$ ${valorFrete.toFixed(2)}`;
+        if (inputTotal) inputTotal.value = `R$ ${total.toFixed(2)}`;
+    } catch (erro) {
+        console.warn("Aviso no processamento do envio (pode ser restrição da rede Wi-Fi):", erro);
+    }
 }
 
 // --- ABRIR FOTO EM TAMANHO GRANDE (LIGHTBOX) ---

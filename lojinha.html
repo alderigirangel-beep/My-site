@@ -64,8 +64,8 @@
                 <p class="chave-pix">0c1dd538-0fdd-4f41-b213-12305fb6a73d</p>
             </div>
 
-            <!-- FORMULÁRIO DE PEDIDO COM UPLOAD DE COMPROVANTE -->
-            <form id="form-pedido" action="https://formspree.io/f/xjgnygrj" method="POST" enctype="multipart/form-data" class="form-pedido" onsubmit="prepararEnvioEmail()">
+            <!-- FORMULÁRIO DE PEDIDO (SEM UPLOAD DE COMPROVANTE) -->
+            <form id="form-pedido" action="https://formspree.io/f/xjgnygrj" method="POST" class="form-pedido" onsubmit="prepararEnvioEmail()">
                 <input type="hidden" id="input-itens-pedido" name="itens_do_pedido" value="">
                 <input type="hidden" id="input-subtotal-pedido" name="subtotal" value="">
                 <input type="hidden" id="input-frete-pedido" name="frete" value="">
@@ -80,7 +80,6 @@
                     <label for="email">Contato (IG / Email):</label>
                     <input type="text" id="email" name="contato" required placeholder=" @seuuser ou email">
                 </div>
-
 
                 <!-- ENDEREÇO EM BLOQUINHOS SEPARADOS -->
                 <p class="subtitulo-form">✦ Endereço de Envio ✦</p>
