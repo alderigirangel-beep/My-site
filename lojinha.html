@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lojinha</title>
+    <link rel="stylesheet" href="my4.css">
+</head>
+<body>
+    <div class="player-musica">
+        <button id="btn-player" onclick="toggleMusica()">♫⋆｡♪₊˚♬ﾟ. Ouvir Música♫⋆｡♪₊˚♬ﾟ.</button>
+        <audio id="musica-fundo" src="radiohead.mp3.mp3" loop></audio>
+    </div>
+
+    <header class="banner-container">
+        <img src="Banner Novo.png" alt="banner">
+    </header>
+
+    <div class="bottons">
+        <nav class="blog">
+            <ul>
+                <li><a href="index.html">Sobre Mim</a></li>
+                <li><a href="portifolio.html">Portfólio</a></li>
+                <li><a href="commissions.html">Commissions</a></li>
+                <li><a href="lojinha.html">Lojinha</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- BOTÃO FLUTUANTE DO CARRINHO -->
+    <button id="btn-carrinho-flutuante" class="btn-carrinho-flutuante" onclick="togglePainelCarrinho()">
+        🛒 <span id="contador-carrinho">0</span>
+    </button>
+
+    <!-- PAINEL LATERAL DO CARRINHO -->
+    <aside id="painel-carrinho" class="painel-carrinho">
+        <div class="painel-header">
+            <h3>🛒 Seu Carrinho</h3>
+            <button class="btn-fechar-painel" onclick="togglePainelCarrinho()">✖</button>
+        </div>
+        
+        <div class="painel-corpo">
+            <ul id="lista-carrinho" class="lista-carrinho">
+                <li class="carrinho-vazio">Seu carrinho está vazio...૮₍˶ ╥ ‸ ╥ ⑅₎α</li>
+            </ul>
+
+            <div class="resumo-valores">
+                <div class="linha-valor">
+                    <span>Subtotal:</span>
+                    <span id="valor-subtotal">R$ 0,00</span>
+                </div>
+                <div class="linha-valor">
+                    <span>Frete:</span>
+                    <span id="valor-frete">R$ 0,00</span>
+                </div>
+                <div class="total-container">
+                    <span>Total:</span>
+                    <span id="valor-total">R$ 0,00</span>
+                </div>
+            </div>
+
+            <div class="box-pix">
+                <p class="titulo-pix">✦⋆｡‧˚ʚ🍓ɞ˚‧｡⋆ ℙ𝕀𝕏 ⋆｡‧˚ʚ🍓ɞ˚‧｡⋆✦</p>
+                <p class="chave-pix">0c1dd538-0fdd-4f41-b213-12305fb6a73d</p>
+            </div>
+
+            <!-- FORMULÁRIO DE PEDIDO COM UPLOAD DE COMPROVANTE -->
+            <form id="form-pedido" action="https://formspree.io/f/xjgnygrj" method="POST" enctype="multipart/form-data" class="form-pedido" onsubmit="prepararEnvioEmail()">
+                <input type="hidden" id="input-itens-pedido" name="itens_do_pedido" value="">
+                <input type="hidden" id="input-subtotal-pedido" name="subtotal" value="">
+                <input type="hidden" id="input-frete-pedido" name="frete" value="">
+                <input type="hidden" id="input-total-pedido" name="valor_total" value="">
+
+                <div class="grupo-campo">
+                    <label for="nome">Nome / Nick:</label>
+                    <input type="text" id="nome" name="nome" required placeholder="Ex: Izzy / Vurrkit">
+                </div>
+
+                <div class="grupo-campo">
+                    <label for="email">Contato (IG / Email):</label>
+                    <input type="text" id="email" name="contato" required placeholder=" @seuuser ou email">
+                </div>
+
+                <!-- CAMPO DE UPLOAD DO COMPROVANTE PIX -->
+                <div class="grupo-campo">
+                    <label for="comprovante">Anexar Comprovante PIX (Imagem/PDF):</label>
+                    <input type="file" id="comprovante" name="comprovante_pix" accept="image/*, application/pdf" required class="input-file-pix">
+                </div>
+
+                <!-- ENDEREÇO EM BLOQUINHOS SEPARADOS -->
+                <p class="subtitulo-form">✦ Endereço de Envio ✦</p>
+                
+                <div class="grupo-campo-duplo">
+                    <div class="grupo-campo">
+                        <label for="cep">CEP:</label>
+                        <input type="text" id="cep" name="cep" required placeholder="00000-000">
+                    </div>
+                    <div class="grupo-campo">
+                        <label for="estado">Estado (UF):</label>
+                        <select id="estado" name="estado" required onchange="calcularFrete()">
+                            <option value="">Selecione...</option>
+                            <option value="SP">SP</option>
+                            <option value="RJ">RJ</option>
+                            <option value="MG">MG</option>
+                            <option value="ES">ES</option>
+                            <option value="PR">PR</option>
+                            <option value="SC">SC</option>
+                            <option value="RS">RS</option>
+                            <option value="OUTROS">Outros Estados (Máx R$ 20,00)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grupo-campo">
+                    <label for="rua">Rua / Avenida:</label>
+                    <input type="text" id="rua" name="rua" required placeholder="Nome da rua">
+                </div>
+
+                <div class="grupo-campo-duplo">
+                    <div class="grupo-campo">
+                        <label for="numero">Número:</label>
+                        <input type="text" id="numero" name="numero" required placeholder="123">
+                    </div>
+                    <div class="grupo-campo">
+                        <label for="complemento">Complemento:</label>
+                        <input type="text" id="complemento" name="complemento" placeholder="Apt, Bloco (opcional)">
+                    </div>
+                </div>
+
+                <div class="grupo-campo-duplo">
+                    <div class="grupo-campo">
+                        <label for="bairro">Bairro:</label>
+                        <input type="text" id="bairro" name="bairro" required placeholder="Bairro">
+                    </div>
+                    <div class="grupo-campo">
+                        <label for="cidade">Cidade:</label>
+                        <input type="text" id="cidade" name="cidade" required placeholder="Cidade" oninput="calcularFrete()">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-enviar-pedido" id="btn-finalizar" disabled>
+                    ✦ 𝔼ℕ𝕍𝕀𝔸ℝ ℙ𝔼𝔻𝕀𝔻𝕆 ✦
+                </button>
+            </form>
+        </div>
+    </aside>
+
+    <!-- POPUP PARA VER A FOTO INTEIRA EM TAMANHO GRANDE -->
+    <div id="modal-imagem" class="modal-imagem oculto" onclick="fecharFotoGrande()">
+        <span class="btn-fechar-imagem">&times;</span>
+        <img id="img-ampliada" class="conteudo-img-ampliada" src="" alt="Foto Expandida">
+    </div>
+
+    <!-- MODAL DE OPÇÕES DE PRODUTO (JANELA POPUP) -->
+    <div id="modal-produto" class="modal-produto oculto">
+        <div class="modal-conteudo">
+            <button class="btn-fechar-modal" onclick="fecharModalProduto()">✖</button>
+            <h3 id="modal-titulo">Escolha as Opções</h3>
+            <p id="modal-preco-base" class="modal-preco">R$ 0,00</p>
+            
+            <div id="grupo-opcoes-tema" class="grupo-campo">
+                <label for="modal-select-tema">Escolha o Tema / Modelo:</label>
+                <select id="modal-select-tema"></select>
+            </div>
+
+            <div id="grupo-opcao-custom" class="grupo-campo oculto">
+                <label for="modal-input-custom">Quais produtos deseja na Box?</label>
+                <input type="text" id="modal-input-custom" placeholder="Ex: Botton Digital Circus + Print Angel Core">
+            </div>
+
+            <div class="grupo-campo">
+                <label for="modal-qtd">Quantidade:</label>
+                <input type="number" id="modal-qtd" value="1" min="1" max="99">
+            </div>
+
+            <button class="btn-confirmar-add" onclick="confirmarAdicaoCarrinho()">✦ Adicionar ao Carrinho ✦</button>
+        </div>
+    </div>
+
+    <!-- CONTEÚDO PRINCIPAL DA LOJINHA -->
+    <main id="conteudo-lojinha" class="conteudo-lojinha">
+        <h1 class="titulo-sessao">★⋆⭒˚.⋆🪐 ⋆⭒˚.⋆ 𝙱𝚎𝚖 𝚟𝚒𝚗𝚍𝚘 𝚊 𝚖𝚒𝚗𝚑𝚊 𝚕𝚘𝚓𝚊! ⋆⭒˚.⋆🪐 ⋆⭒˚.⋆★</h1>
+
+        <!-- FILTROS POR CATEGORIA -->
+        <nav class="filtros-categoria">
+            <button class="btn-filtro active" onclick="filtrarProdutos('todos', this)">★ Todos</button>
+            <button class="btn-filtro" onclick="filtrarProdutos('buttons', this)">🔘 Bottons</button>
+            <button class="btn-filtro" onclick="filtrarProdutos('adesivos', this)">🎀 Adesivos</button>
+            <button class="btn-filtro" onclick="filtrarProdutos('prints', this)">🖼️ Prints</button>
+            <button class="btn-filtro" onclick="filtrarProdutos('box', this)">🎁 Box Surpresa</button>
+        </nav>
+
+        <!-- SEÇÃO DE DESTAQUES -->
+        <section id="secao-destaques" class="secao-destaques">
+            <h2 class="subtitulo-y2k">˚˖𓍢ִ໋🦢˚ 𝔻𝔼𝕊𝕋𝔸ℚ𝕌𝔼 ˚˖𓍢ִ໋🦢˚</h2>
+            <div class="vitrine-produtos">
+                
+                <div class="card-produto destaque" data-categoria="adesivos">
+                    <span class="badge-destaque">🔥</span>
+                    <div class="container-img-produto" onclick="abrirFotoGrande('digital circus.png')">
+                        <img src="digital circus.png" alt="Sticerks" class="img-produto">
+                        <span class="dica-clique">🔍 Clique para expandir</span>
+                    </div>
+                    <h3>Cartela Digital Circus</h3>
+                    <p class="preco-produto">R$ 10,00</p>
+                    <button class="btn-add-carrinho" onclick="abrirOpcoesProduto('Cartela Digital Circus', 10.00, [ 'Cartela Completa'])">🛒 Escolher</button>
+                </div>
+
+                <div class="card-produto destaque" data-categoria="buttons">
+                    <span class="badge-destaque">𝒫ℯ𝓇𝒻ℯ𝒸𝓉!☆</span>
+                    <div class="container-img-produto" onclick="abrirFotoGrande('helluva 1.png')">
+                        <img src="helluva 1.png" alt="Botton" class="img-produto">
+                        <span class="dica-clique">🔍 Clique para expandir</span>
+                    </div>
+                    <h3>Bottons Hellaverse</h3>
+                    <p class="preco-produto">R$ 6,00 32mm</p>
+                    <button class="btn-add-carrinho" onclick="abrirOpcoesProduto('bottons Hellaverse', 6.00, ['Vaggie', 'Stolas', 'Loona', 'Belzebuth','Velvet','Angel'])">🛒 Escolher</button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- VITRINE GERAL DE PRODUTOS -->
+        <section class="secao-catalogo">
+            <h2 id="titulo-catalogo" class="subtitulo-y2k">⋆｡‧˚ʚ🍓ɞ˚‧｡⋆ ℂ𝔸𝕋𝔸́𝕃𝕆𝔾𝕆 ℂ𝕆𝕄ℙ𝕃𝔼𝕋𝕆 ⋆｡‧˚ʚ🍓ɞ˚‧｡⋆</h2>
+            <div class="vitrine-produtos" id="vitrine-geral">
+                
+                <!-- BOTTONS -->
+                <div class="card-produto" data-categoria="buttons">
+                    <div class="container-img-produto" onclick="abrirFotoGrande('bottonslgbts.png')">
+                        <img src="bottonslgbts.png" alt="Botton" class="img-produto">
+                        <span class="dica-clique">🔍 Expandir</span>
+                    </div>
+                    <h3>Bottons lgbt </h3>
+                    <p class="preco-produto">R$ 6,00</p>
+                    <button class="btn-add-carrinho" onclick="abrirOpcoesProduto('Botton 32mm', 6.00, ['Pan', 'Arromantico', 'Bissexual','Gay', 'Lesbica','Não-Binario','Genero Fluido','Transboy','Transgirl','Assexual','Polyamor','Aroace'])">🛒 Escolher</button>
+                </div>
+                <div class="card-produto" data-categoria="buttons">
+                    <div class="container-img-produto" onclick="abrirFotoGrande('bottons desenhos animados.png')">
+                        <img src="bottons desenhos animados.png" alt="Botton" class="img-produto">
+                        <span class="dica-clique">🔍 Expandir</span>
+                    </div>
+                    <h3>Bottons Cartoon-1 </h3>
+                    <p class="preco-produto">R$ 6,00</p>
+                    <button class="btn-add-carrinho" onclick="abrirOpcoesProduto('Botton 32mm', 6.00, ['Peróla', 'Jasper', 'Peridot','Perola Azul','Demencia','Srta. Heed','Homem aranha punk'])">🛒 Escolher</button>
+                </div>
+                 <div class="card-produto" data-categoria="buttons">
+                    <div class="container-img-produto" onclick="abrirFotoGrande('bottonsCarton2.png')">
+                        <img src="bottonsCarton2.png" alt="Botton" class="img-produto">
+                        <span class="dica-clique">🔍 Expandir</span>
+                    </div>
+                    <h3>Bottons Cartoon-2 </h3>
+                    <p class="preco-produto">R$ 6,00</p>
+                    <button class="btn-add-carrinho" onclick="abrirOpcoesProduto('Botton 32mm', 6.00, ['Felina', 'Bluey', 'Bingo','Isha e Powder','Jinx','Art jinx'])">🛒 Escolher</button>
+                </div>
+                <div class="card-produto" data-categoria="buttons">
+                    <div class="container-img-produto" onclick="abrirFotoGrande('nostalgia.png')">
+                        <img src="nostalgia.png" alt="Botton" class="img-produto">
+                        <span class="dica-clique">🔍 Expandir</span>
+                    </div>
+                    <h3>Bottons Nostalgia </h3>
+                    <p class="preco-produto">R$ 6,00</p>
+                    <button class="btn-add-carrinho" onclick="abrirOpcoesProduto('Botton 32mm', 6.00, ['Shera', 'Arlequina', 'Betty Boop','Popeye','Gwen','Meninas Super poderosas','Tom e jerry'])">🛒 Escolher</button>
+                </div>
+                <div class="card-produto" data-categoria="buttons">
+                    <div class="container-img-produto" onclick="abrirFotoGrande('bandas.png')">
+                        <img src="bandas.png" alt="Botton" class="img-produto">
+                        <span class="dica-clique">🔍 Expandir</span>
+                    </div>
+                    <h3>Bottons bandas </h3>
+                    <p class="preco-produto">R$ 6,00</p>
+                    <button class="btn-add-carrinho" onclick="abrirOpcoesProduto('Botton 32mm', 6.00, ['Babymetal', 'Murderdolls', 'The Beatles','TV Girl'])">🛒 Escolher</button>
+                </div>
+                <div class="card-produto" data-categoria="buttons">
+                    <div class="container-img-produto" onclick="abrirFotoGrande('pomni.png')">
+                        <img src="pomni.png" alt="Botton" class="img-produto">
+                        <span class="dica-clique">🔍 Expandir</span>
+                    </div>
+                    <h3>Botton Exclusivo - pomni </h3>
+                    <p class="preco-produto">R$ 6,00</p>
+                    <button class="btn-add-carrinho" onclick="abrirOpcoesProduto('Botton 32mm', 6.00, ['Pomni'])">🛒 Escolher</button>
+                </div>
+                 <div class="card-produto" data-categoria="buttons">
+                    <div class="container-img-produto" onclick="abrirFotoGrande('jogos1.png')">
+                        <img src="jogos1.png" alt="Botton" class="img-produto">
+                        <span class="dica-clique">🔍 Expandir</span>
+                    </div>
+                    <h3>Bottons Games + Pochita? </h3>
+                    <p class="preco-produto">R$ 6,00</p>
+                    <button class="btn-add-carrinho" onclick="abrirOpcoesProduto('Botton 32mm', 6.00, ['Undertale','Squigly','Umbrella','Eliza','Pochita'])">🛒 Escolher</button>
+                </div>
+                <div class="card-produto" data-categoria="buttons">
+                    <div class="container-img-produto" onclick="abrirFotoGrande('solitarios.png')">
+                        <img src="solitarios.png" alt="Botton" class="img-produto">
+                        <span class="dica-clique">🔍 Expandir</span>
+                    </div>
+                    <h3>Bottons solitarios </h3>
+                    <p class="preco-produto">R$ 6,00</p>
+                    <button class="btn-add-carrinho" onclick="abrirOpcoesProduto('Botton 32mm', 6.00, ['Galinhaaaa!','MaoMao','Miamura'])">🛒 Escolher</button>
+                </div>
+                
+                <!-- ADESIVOS -->
+                 <div class="card-produto" data-categoria="adesivos">
+                    <div class="container-img-produto" onclick="abrirFotoGrande('adesivosHelluva.png')">
+                        <img src="adesivosHelluva.png" alt="Sticerks" class="img-produto">
+                        <span class="dica-clique">🔍 Expandir</span>
+                    </div>
+                    <h3>Cartela Hellaverse</h3>
+                    <p class="preco-produto">R$ 10,00 </p>
+                    <button class="btn-add-carrinho" onclick="abrirOpcoesProduto('Adesivos Hellaverse ', 10.00, ['Toda a cartela'])">🛒 Escolher</button>
+                </div>
+                <div class="card-produto" data-categoria="adesivos">
+                    <div class="container-img-produto" onclick="abrirFotoGrande('ckr adesivos.png')">
+                        <img src="ckr adesivos.png" alt="Sticerks" class="img-produto">
+                        <span class="dica-clique">🔍 Expandir</span>
+                    </div>
+                    <h3>Cartela CKR</h3>
+                    <p class="preco-produto">R$ 10,00 </p>
+                    <button class="btn-add-carrinho" onclick="abrirOpcoesProduto('Adesivos CKR ', 10.00, ['Toda a cartela'])">🛒 Escolher</button>
+                </div>
+                <div class="card-produto" data-categoria="adesivos">
+                    <div class="container-img-produto" onclick="abrirFotoGrande('img.png')">
+                        <img src="img.png" alt="Sticerks" class="img-produto">
+                        <span class="dica-clique">🔍 Expandir</span>
+                    </div>
+                    <h3>Cartela IMG</h3>
+                    <p class="preco-produto">R$ 10,00 </p>
+                    <button class="btn-add-carrinho" onclick="abrirOpcoesProduto('Adesivos IMG ', 10.00, ['Toda cartela'])">🛒 Escolher</button>
+                </div>
+                <div class="card-produto" data-categoria="adesivos">
+                    <div class="container-img-produto" onclick="abrirFotoGrande('ciel.png')">
+                        <img src="ciel.png" alt="Sticerks" class="img-produto">
+                        <span class="dica-clique">🔍 Expandir</span>
+                    </div>
+                    <h3>Cartela Kuroshitsuji</h3>
+                    <p class="preco-produto">R$ 10,00 </p>
+                    <button class="btn-add-carrinho" onclick="abrirOpcoesProduto('Adesivos Kuroshitsuji ', 10.00, ['Toda a cartela'])">🛒 Escolher</button>
+                </div>
+                  <div class="card-produto" data-categoria="adesivos">
+                    <div class="container-img-produto" onclick="abrirFotoGrande('gatos  memes.png')">
+                        <img src="gatos  memes.png" alt="Sticerks" class="img-produto">
+                        <span class="dica-clique">🔍 Expandir</span>
+                    </div>
+                    <h3>Cartela Gatinhos</h3>
+                    <p class="preco-produto">R$ 10,00 </p>
+                    <button class="btn-add-carrinho" onclick="abrirOpcoesProduto('Adesivos gatinhos ', 10.00, ['Toda a cartela'])">🛒 Escolher</button>
+                </div>
+                  <div class="card-produto" data-categoria="adesivos">
+                    <div class="container-img-produto" onclick="abrirFotoGrande('maomao.png')">
+                        <img src="maomao.png" alt="Sticerks" class="img-produto">
+                        <span class="dica-clique">🔍 Expandir</span>
+                    </div>
+                    <h3>Cartela DA</h3>
+                    <p class="preco-produto">R$ 10,00 </p>
+                    <button class="btn-add-carrinho" onclick="abrirOpcoesProduto('Adesivos DA ', 10.00, ['Toda a cartela'])">🛒 Escolher</button>
+                </div>
+                <div class="card-produto" data-categoria="adesivos">
+                    <div class="container-img-produto" onclick="abrirFotoGrande('satoro.png')">
+                        <img src="satoro.png" alt="Sticerks" class="img-produto">
+                        <span class="dica-clique">🔍 Expandir</span>
+                    </div>
+                    <h3>Cartela Jujusto Kaise</h3>
+                    <p class="preco-produto">R$ 10,00 </p>
+                    <button class="btn-add-carrinho" onclick="abrirOpcoesProduto('Adesivos Jujusto ', 10.00, ['Toda a cartela'])">🛒 Escolher</button>
+                </div>
+                <div class="card-produto" data-categoria="adesivos">
+                    <div class="container-img-produto" onclick="abrirFotoGrande('skull.png')">
+                        <img src="skull.png" alt="Sticerks" class="img-produto">
+                        <span class="dica-clique">🔍 Expandir</span>
+                    </div>
+                    <h3>Cartela Skullgirls</h3>
+                    <p class="preco-produto">R$ 10,00 </p>
+                    <button class="btn-add-carrinho" onclick="abrirOpcoesProduto('Adesivos Skullgirls ', 10.00, ['Toda a cartela'])">🛒 Escolher</button>
+                </div>
+                <div class="card-produto" data-categoria="adesivos">
+                    <div class="container-img-produto" onclick="abrirFotoGrande('steven.png')">
+                        <img src="steven.png" alt="Sticerks" class="img-produto">
+                        <span class="dica-clique">🔍 Expandir</span>
+                    </div>
+                    <h3>Cartela steven universo</h3>
+                    <p class="preco-produto">R$ 10,00 </p>
+                    <button class="btn-add-carrinho" onclick="abrirOpcoesProduto('Adesivos steven universo ', 10.00, ['Toda a cartela'])">🛒 Escolher</button>
+                </div>
+                 <div class="card-produto" data-categoria="adesivos">
+                    <div class="container-img-produto" onclick="abrirFotoGrande('sonic.png')">
+                        <img src="sonic.png" alt="Sticerks" class="img-produto">
+                        <span class="dica-clique">🔍 Expandir</span>
+                    </div>
+                    <h3>Cartela Sonic</h3>
+                    <p class="preco-produto">R$ 10,00 </p>
+                    <button class="btn-add-carrinho" onclick="abrirOpcoesProduto('Adesivos Sonic ', 10.00, ['Toda a cartela'])">🛒 Escolher</button>
+                </div>
+                 <div class="card-produto" data-categoria="adesivos">
+                    <div class="container-img-produto" onclick="abrirFotoGrande('depre.png')">
+                        <img src="depre.png" alt="Sticerks" class="img-produto">
+                        <span class="dica-clique">🔍 Expandir</span>
+                    </div>
+                    <h3>Cartela Omori</h3>
+                    <p class="preco-produto">R$ 10,00 </p>
+                    <button class="btn-add-carrinho" onclick="abrirOpcoesProduto('Adesivos Omori ', 10.00, ['Toda a cartela'])">🛒 Escolher</button>
+                </div>
+                 <div class="card-produto" data-categoria="adesivos">
+                    <div class="container-img-produto" onclick="abrirFotoGrande('nostalgia2.png')">
+                        <img src="nostalgia2.png" alt="Sticerks" class="img-produto">
+                        <span class="dica-clique">🔍 Expandir</span>
+                    </div>
+                    <h3>Cartela Nostalgica</h3>
+                    <p class="preco-produto">R$ 10,00 </p>
+                    <button class="btn-add-carrinho" onclick="abrirOpcoesProduto('Adesivos Nostalgicas ', 10.00, ['Toda a cartela'])">🛒 Escolher</button>
+                </div>
+                 <div class="card-produto" data-categoria="adesivos">
+                    <div class="container-img-produto" onclick="abrirFotoGrande('fnaf.png')">
+                        <img src="fnaf.png" alt="Sticerks" class="img-produto">
+                        <span class="dica-clique">🔍 Expandir</span>
+                    </div>
+                    <h3>Cartela FNAF</h3>
+                    <p class="preco-produto">R$ 10,00 </p>
+                    <button class="btn-add-carrinho" onclick="abrirOpcoesProduto('Adesivos FNAF ', 10.00, ['Toda a cartela'])">🛒 Escolher</button>
+                </div>
+
+                <!-- PRINTS -->
+                <div class="card-produto" data-categoria="prints">
+                    <div class="container-img-produto" onclick="abrirFotoGrande('prints.png')">
+                        <img src="prints.png" alt="Print" class="img-produto">
+                        <span class="dica-clique">🔍 Expandir</span>
+                    </div>
+                    <h3>Prints Ilustrados</h3>
+                    <p class="preco-produto">R$ 10,00</p>
+                    <button class="btn-add-carrinho" onclick="abrirOpcoesProduto('Print A5', 10.00, ['Skullgirls', 'Mk','Verosika','Lute e adam' ,'Takae - Personagem autoral','Meus personagens autorais'])">🛒 Escolher</button>
+                </div>
+
+                <!-- MARCA-PÁGINAS -->
+                <div class="card-produto" data-categoria="prints">
+                    <div class="container-img-produto" onclick="abrirFotoGrande('maracpaginas.png')">
+                        <img src="maracpaginas.png" alt="Marca-Página" class="img-produto">
+                        <span class="dica-clique">🔍 Expandir</span>
+                    </div>
+                    <h3>Marca-Páginas</h3>
+                    <p class="preco-produto">R$ 2,00</p>
+                    <button class="btn-add-carrinho" onclick="abrirOpcoesProduto('Marca-Página', 2.00, ['Peridot', 'Hora de aventura', 'Lute','Jack e Lady-iris'])">🛒 Escolher</button>
+                </div>
+
+                <!-- BOX SURPRESA -->
+                <div class="card-produto" data-categoria="box">
+                    <div class="container-img-produto" onclick="abrirFotoGrande('box surprise[.png')">
+                        <img src="box surprise[.png" alt="Box Surpresa" class="img-produto">
+                        <span class="dica-clique">🔍 Expandir</span>
+                    </div>
+                    <h3>Box Surpresa Personalizada</h3>
+                    <p class="preco-produto"> M R$ 35,00 / P R$ 25,00 </p>
+                    <button class="btn-add-carrinho" onclick="abrirOpcoesProduto('Box Surpresa M', 35.00, 'Box Surpresa P', 25.00, true, ['M','P'])">🛒 Personalizar Box</button>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script4.js"></script>
+</body>
+</html>

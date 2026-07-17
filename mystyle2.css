@@ -1,0 +1,499 @@
+/* ==========================================================================
+   1. CONFIGURAÇÕES GERAIS DO SITE (RESET & FONTES)
+   ========================================================================== */
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=VT323&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Comfortaa', Tahoma, sans-serif;
+}
+
+body {
+    background-color: #1a242d;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   2. PLAYER DE MÚSICA FLUTUANTE
+   ========================================================================== */
+.player-musica {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+    z-index: 9999;
+}
+
+.player-musica button {
+    background: rgba(26, 36, 45, 0.85);
+    color: #ffffff;
+    border: 2px solid #5BCEFA;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12px;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+}
+
+.player-musica button:hover {
+    background: #F5A9B8;
+    color: #1a242d;
+    border-color: #ffffff;
+    transform: scale(1.05);
+}
+
+/* --- ESTILOS GERAIS & PALETA DE CORES (Y2K / WEBCORE) --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #1a242d;
+    color: #e0e0e0;
+    font-family: 'Courier New', Courier, monospace;
+    padding-bottom: 50px;
+}
+
+/* --- BANNER DE PONTA A PONTA --- */
+.banner-container {
+    width: 100%;
+    height: 350px; /* Mantém a altura controlada idêntica ao index */
+    overflow: hidden;
+    position: relative;
+    background-color: #1a242d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner-container img {
+    /* Rotaciona a imagem que está em pé para que ela fique deitada */
+    transform: rotate(-90deg); 
+    
+    /* Ajusta as proporções para que, ao deitar, ela preencha todo o espaço horizontal */
+    width: auto;
+    height: 100vw; 
+    max-height: none;
+    object-fit: cover;
+    display: block;
+}
+
+.bottons {
+    background-color: #243447;
+    padding: 10px 0;
+    border-bottom: 2px solid #5BCEFA;
+}
+
+.blog ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.blog a {
+    color: #5BCEFA;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 12px;
+    border: 1px transparent;
+    transition: all 0.2s;
+}
+
+.blog a:hover {
+    color: #F5A9B8;
+    border: 1px dashed #F5A9B8;
+    background-color: rgba(245, 169, 184, 0.1);
+}
+
+/* ==========================================================================
+   4. ESTILOS RETRO WINDOWS 95/98 (VERSÃO ESCURA DO INDEX)
+   ========================================================================== */
+.desktop-wrapper {
+    width: 100%;
+    background-color: #1a242d;
+    padding: 60px 20px 120px 20px;
+    box-sizing: border-box;
+}
+
+.desktop-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* Janela Retro Dark */
+.window {
+    background: #22303c;
+    border: 3px solid;
+    border-color: #34495e #0f171e #0f171e #34495e; 
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+/* Tamanhos Padrão das Janelas */
+.win-paint { width: 100%; max-width: 750px; }
+.win-gallery { width: 100%; max-width: 800px; } /* Aumentado para acomodar melhor a galeria */
+.win-notepad { width: 100%; max-width: 450px; }
+
+/* Barra de Títulos */
+.title-bar {
+    background: linear-gradient(90deg, #F5A9B8, #5BCEFA);
+    padding: 6px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #1a242d;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.title-bar-controls button {
+    width: 18px;
+    height: 16px;
+    background: #22303c;
+    border: 1.5px solid;
+    border-color: #34495e #0f171e #0f171e #34495e;
+    color: #ffffff;
+    cursor: pointer;
+    margin-left: 2px;
+}
+
+.title-bar-controls button:active {
+    border-color: #0f171e #34495e #34495e #0f171e;
+}
+
+/* Menu das Janelas */
+.window-menu {
+    display: flex;
+    gap: 12px;
+    font-size: 12px;
+    padding: 6px 10px;
+    border-bottom: 2px solid #1a242d;
+    color: #ffffff;
+    background-color: #1c2833;
+}
+
+.window-menu span { cursor: pointer; }
+.window-menu span:hover { color: #5BCEFA; }
+
+/* Corpo Interno da Janela */
+.window-body {
+    padding: 15px;
+    background: #1a242d;
+    color: #ffffff;
+    margin: 4px;
+    border: 2px solid;
+    border-color: #0f171e #34495e #34495e #0f171e;
+    flex-grow: 1;
+}
+
+/* ==========================================================================
+   4.1. CUSTOMIZAÇÃO EXCLUSIVA DO MS PAINT (CORES TRANS)
+   ========================================================================== */
+.win-paint {
+    border-color: #F5A9B8 #5BCEFA #5BCEFA #F5A9B8; /* Bordas no estilo trans */
+}
+
+.paint-content {
+    display: flex;
+    gap: 10px;
+    background: #1c2833 !important;
+    padding: 8px !important;
+}
+
+.paint-tools {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px;
+    background: #22303c;
+    padding: 4px;
+    border: 2px solid;
+    border-color: #34495e #0f171e #0f171e #34495e;
+}
+
+.tool-icon {
+    width: 25px;
+    height: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #22303c;
+    color: #ffffff;
+    border: 1.5px solid;
+    border-color: #34495e #0f171e #0f171e #34495e;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Canvas do Paint com fundo escuro macio para destacar o desenho */
+.paint-canvas {
+    background: #22303c;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 380px;
+    overflow: hidden;
+    border: 3px inset #0f171e;
+    padding: 10px;
+}
+
+.art-image {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Garante que o desenho em destaque não seja cortado */
+}
+
+/* Paleta de Cores no rodapé do Paint */
+.paint-colors {
+    display: flex;
+    gap: 6px;
+    background: #22303c;
+    padding: 8px;
+    margin: 0 4px 4px 4px;
+    border-top: 2px solid #1a242d;
+}
+
+.color-box {
+    width: 22px;
+    height: 22px;
+    border: 1.5px solid #000000;
+    cursor: pointer;
+}
+
+.color-box.pink { background-color: #f1c606; }
+.color-box.blue { background-color: #9179ff; }
+.color-box.white { background-color: #ffffff; }
+.color-box.dark { background-color: #889aa5; }
+
+.selected-color {
+    border: 2px solid #ffffff;
+    outline: 1.5px solid #5BCEFA;
+}
+
+/* ==========================================================================
+   5. GALERIA DE DESENHOS (CORRIGIDA - SEM CORTES)
+   ========================================================================== */
+.gallery-intro {
+    font-size: 14px;
+    color: #5BCEFA;
+    margin-bottom: 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Melhora a proporção dos cards */
+    gap: 20px;
+}
+
+/* Card dos Desenhos */
+.gallery-card {
+    background: #22303c;
+    border: 2.5px dashed #F5A9B8;
+    padding: 12px;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.2s, border-color 0.2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.gallery-card:hover {
+    transform: translateY(-4px);
+    border-color: #5BCEFA;
+    background: #293946;
+}
+
+/* Ajuste crucial para não cortar os desenhos da galeria */
+.gallery-card-img-container {
+    width: 100%;
+    height: 180px; /* Altura fixa confortável */
+    background: #1a242d; /* Fundo escuro para artes transparentes */
+    border-radius: 8px;
+    border: 1px solid #1a242d;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gallery-card img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* ISSO IMPEDE O CORTE! O desenho fica inteiro visível */
+}
+
+.card-title {
+    font-size: 13px;
+    color: #ffffff;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* ==========================================================================
+   6. BARRA DE TAREFAS RETRO DARK
+   ========================================================================== */
+.retro-taskbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 45px;
+    background: #22303c;
+    border-top: 3px solid #5BCEFA;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    gap: 12px;
+    z-index: 10000;
+}
+
+.start-button {
+    font-weight: bold;
+    font-size: 13px;
+    padding: 4px 12px;
+    background: #1a242d;
+    border: 2px solid;
+    border-color: #34495e #0f171e #0f171e #34495e;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #5BCEFA;
+}
+
+.taskbar-tabs {
+    display: flex;
+    gap: 6px;
+    flex-grow: 1;
+}
+
+/* Abas das Janelas */
+.task-tab {
+    font-size: 12px;
+    padding: 4px 12px;
+    background: #1a242d;
+    border: 2px solid;
+    border-color: #34495e #0f171e #0f171e #34495e;
+    color: #ffffff;
+}
+
+.task-tab.active {
+    background: #2d3d4b;
+    border-color: #0f171e #34495e #34495e #0f171e;
+    color: #F5A9B8;
+    font-weight: bold;
+}
+
+.taskbar-time {
+    background: #1a242d;
+    border: 2px inset #0f171e;
+    padding: 2px 10px;
+    font-size: 12px;
+    font-family: monospace;
+    color: #5BCEFA;
+}
+
+/* ==========================================================================
+   7. RESPONSIVIDADE
+   ========================================================================== */
+@media (max-width: 768px) {
+    .bottons {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .blog ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .desktop-wrapper {
+        padding: 40px 15px 100px 15px;
+    }
+}
+/* ==========================================================================
+   ESTILOS PARA O ZOOM DA IMAGEM (LIGHTBOX/MODAL RETRO)
+   ========================================================================== */
+.modal {
+    display: none; /* Fica invisível por padrão */
+    position: fixed;
+    z-index: 99999; /* Fica por cima de absolutamente tudo */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgba(10, 15, 20, 0.9); /* Fundo escuro transparente */
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Janela que surge no centro */
+.modal-content-wrapper {
+    width: 100%;
+    max-width: 650px;
+    background: #22303c;
+    border-color: #F5A9B8 #5BCEFA #5BCEFA #F5A9B8 !important; /* Cores Trans */
+    animation: zoomIn 0.2s ease-out;
+}
+
+/* Animaçãozinha clássica de zoom */
+@keyframes zoomIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    background: #1a242d !important;
+    border: 2px inset #0f171e;
+}
+
+/* Imagem ampliada ajustável */
+.modal-img {
+    max-width: 100%;
+    max-height: 70vh; /* Impede que passe do tamanho da tela */
+    object-fit: contain;
+    border: 2px solid #5BCEFA;
+}
+
+.modal-caption {
+    font-size: 15px;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Deixa as fotos com cursor de clique */
+.gallery-card img, .art-image {
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.gallery-card img:hover, .art-image:hover {
+    opacity: 0.85;
+}

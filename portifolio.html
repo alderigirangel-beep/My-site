@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio • Noah</title>
+    <link rel="stylesheet" href="mystyle2.css">
+</head>
+<body>
+
+    <!-- Player de Música -->
+    <div class="player-musica">
+        <button id="btn-player" onclick="toggleMusica()">♫⋆｡♪₊˚♬ﾟ. Ouvir Música♫⋆｡♪₊˚♬ﾟ.</button>
+        <audio id="musica-fundo" src="Real Man - Beabadoobee (youtube).mp3" loop></audio>
+    </div>
+
+    <!-- Banner -->
+    <header class="banner-container">
+        <img src="Banner Novo.png" alt="banner">
+    </header>
+
+    <!-- Menu e Login -->
+    <div class="bottons">
+        <nav class="blog">
+            <ul>
+                <li><a href="index.html">Sobre Mim</a></li>
+                <li><a href="portifolio.html" class="active">Portfólio</a></li>
+                <li><a href="commissions.html">Commissions</a></li>
+                <li><a href="lojinha.html">Lojinha</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- --- ÁREA DO DESKTOP RETRO --- -->
+    <div class="desktop-wrapper">
+        <main class="desktop-container">
+            
+            <!-- ==========================================================
+            JANELA DO MS PAINT (ARTE EM DESTAQUE) - CORES TRANS
+            ========================================================== -->
+            <div class="window win-paint">
+                <div class="title-bar">
+                    <span>✮⋆˙𝙰𝚛𝚝𝚎 𝚍𝚎𝚜𝚝𝚊𝚚𝚞𝚎✮⋆˙</span>
+                    <div class="title-bar-controls">
+                        <button>_</button>
+                        <button>🗖</button>
+                        <button>X</button>
+                    </div>
+                </div>
+                <div class="window-menu">
+                    <span>𝔸𝕣𝕢𝕦𝕚𝕧𝕠🗁</span>
+                    <span>𝔼𝕕𝕚𝕥𝕒𝕣⁞</span>
+                    <span>𝔼𝕩𝕚𝕓𝕚𝕣≔</span>
+                    <span>𝕀𝕞𝕒𝕘𝕖𝕞📷</span>
+                    <span>𝕆𝕡𝕔̧𝕠̃𝕖𝕤</span>
+                </div>
+                <div class="paint-content">
+                    <div class="paint-canvas">
+                        <!-- SUA IMAGEM PRINCIPAL DE DESTAQUE -->
+                        <img class="art-image" src="lute e adam.png" alt="Desenho em Destaque">
+                    </div>
+                </div>
+                <!-- PALETA DE CORES TRANS INFERIOR -->
+                <div class="paint-colors">
+                    <div class="color-box pink selected-color"></div>
+                    <div class="color-box blue"></div>
+                    <div class="color-box white"></div>
+                    <div class="color-box dark"></div>
+                </div>
+            </div>
+
+            <!-- ==========================================================
+            JANELA DA GALERIA (MEUS DESENHOS - COM 14 IMAGENS)
+            ========================================================== -->
+            <div class="window win-gallery">
+                <div class="title-bar">
+                    <span>𝙼𝚢 𝚙𝚘𝚛𝚝𝚏𝚘́𝚕𝚒𝚘</span>
+                    <div class="title-bar-controls">
+                        <button>_</button>
+                        <button>🗖</button>
+                        <button>X</button>
+                    </div>
+                </div>
+                <div class="window-body">
+                    <p class="gallery-intro">*ੈ✩‧₊˚༺☆༻*ੈ✩‧₊˚𝙼𝚞𝚛𝚊𝚕 𝚍𝚎 𝚊𝚛𝚝𝚎*ੈ✩‧₊˚༺☆༻*ੈ✩‧₊˚</p>
+                    
+                    <div class="gallery-grid">
+                        
+                        <!-- CARD 01 -->
+                        <div class="gallery-card">
+                            <div class="gallery-card-img-container">
+                                <img src="my (2).jpg" alt="Sketch #01">
+                            </div>
+                            <p class="card-title">𝙴𝚞 𝚎 𝚖𝚒𝚗𝚑𝚊𝚜 𝚋𝚊𝚗𝚍𝚎𝚒𝚛𝚊𝚜</p>
+                        </div>
+
+                        <!-- CARD 02 -->
+                        <div class="gallery-card">
+                            <div class="gallery-card-img-container">
+                                <img src="milena.png" alt="Ilustração Colorida">
+                            </div>
+                            <p class="card-title">𝚖𝚒𝚕𝚎𝚗𝚊</p>
+                        </div>
+
+                        <!-- CARD 03 -->
+                        <div class="gallery-card">
+                            <div class="gallery-card-img-container">
+                                <img src="ametista.jpg" alt="Nome do Desenho 3">
+                            </div>
+                            <p class="card-title">𝚊𝚖𝚎𝚝𝚒𝚜𝚝𝚊</p>
+                        </div>
+
+                        <!-- CARD 04 -->
+                        <div class="gallery-card">
+                            <div class="gallery-card-img-container">
+                                <img src="jasper.jpg" alt="Nome do Desenho 4">
+                            </div>
+                            <p class="card-title">𝚓𝚊𝚜𝚙𝚎𝚛</p>
+                        </div>
+
+                        <!-- CARD 05 -->
+                        <div class="gallery-card">
+                            <div class="gallery-card-img-container">
+                                <img src="peridot.jpg" alt="Nome do Desenho 5">
+                            </div>
+                            <p class="card-title">𝚙𝚎𝚛𝚒𝚍𝚘𝚝</p>
+                        </div>
+
+                        <!-- CARD 06 -->
+                        <div class="gallery-card">
+                            <div class="gallery-card-img-container">
+                                <img src="takae.png" alt="Nome do Desenho 6">
+                            </div>
+                            <p class="card-title">𝚃𝚊𝚔𝚊𝚎</p>
+                        </div>
+
+                        <!-- CARD 07 -->
+                        <div class="gallery-card">
+                            <div class="gallery-card-img-container">
+                                <img src="demencia.jpg" alt="Nome do Desenho 7">
+                            </div>
+                            <p class="card-title">𝙳𝚎𝚖𝚎𝚗𝚌𝚒𝚊</p>
+                        </div>
+
+                        <!-- CARD 08 -->
+                        <div class="gallery-card">
+                            <div class="gallery-card-img-container">
+                                <img src="diamentes.png" alt="Nome do Desenho 8">
+                            </div>
+                            <p class="card-title">𝙳𝚒𝚊𝚖𝚊𝚗𝚝𝚎𝚜</p>
+                        </div>
+
+                        <!-- CARD 09 -->
+                        <div class="gallery-card">
+                            <div class="gallery-card-img-container">
+                                <img src="pride day.jpg" alt="Nome do Desenho 9">
+                            </div>
+                            <p class="card-title">𝚖𝚎𝚞𝚜 𝚙𝚎𝚛𝚜𝚘𝚗𝚊𝚐𝚎𝚗𝚜</p>
+                        </div>
+
+                        <!-- CARD 10 -->
+                        <div class="gallery-card">
+                            <div class="gallery-card-img-container">
+                                <img src="guns.png" alt="Nome do Desenho 10">
+                            </div>
+                            <p class="card-title">𝙶𝚞𝚗𝚜 𝚗' 𝚁𝚘𝚜𝚎𝚜</p>
+                        </div>
+
+                        <!-- CARD 11 -->
+                        <div class="gallery-card">
+                            <div class="gallery-card-img-container">
+                                <img src="verosika.png" alt="Nome do Desenho 11">
+                            </div>
+                            <p class="card-title">𝚅𝚎𝚛𝚘𝚜𝚒𝚔𝚊</p>
+                        </div>
+
+                        <!-- CARD 12 -->
+                        <div class="gallery-card">
+                            <div class="gallery-card-img-container">
+                                <img src="ckr.jpg" alt="Nome do Desenho 12">
+                            </div>
+                            <p class="card-title">𝚂𝚑𝚊𝚍𝚘𝚠+ 𝙰𝚙𝚙𝚕𝚎+ 𝙱𝚕𝚊𝚌𝚔 𝚂𝚊𝚙𝚑𝚒𝚛𝚎 𝙵𝚞𝚜𝚊̃𝚘</p>
+                        </div>
+
+                        <!-- CARD 13 -->
+                        <div class="gallery-card">
+                            <div class="gallery-card-img-container">
+                                <img src="CKr2.png" alt="Nome do Desenho 13">
+                            </div>
+                            <p class="card-title">𝙰𝚗𝚌𝚒𝚘̃𝚎𝚜</p>
+                        </div>
+
+                        <!-- CARD 14 (Adicionado para completar as 14 fotos) -->
+                        <div class="gallery-card">
+                            <div class="gallery-card-img-container">
+                                <img src="peridot2.jpg" alt="Nome do Desenho 14">
+                            </div>
+                            <p class="card-title">𝙿𝚎𝚛𝚒𝚍𝚘𝚝 𝚅𝟸</p>
+                        </div>
+
+                    </div> <!-- Fim da gallery-grid -->
+                </div> <!-- Fim do window-body -->
+            </div> <!-- Fim da win-gallery -->
+
+        </main>
+    </div>
+
+    <!-- ==========================================================
+    JANELA FLUTUANTE DE ZOOM (MODAL/LIGHTBOX)
+    ========================================================== -->
+    <div id="image-modal" class="modal">
+        <div class="modal-content-wrapper window">
+            <div class="title-bar">
+                <span id="modal-title">✮⋆˙Visualizador de Imagens✮⋆˙</span>
+                <div class="title-bar-controls">
+                    <button class="modal-close-btn">X</button>
+                </div>
+            </div>
+            <div class="window-body modal-body">
+                <img class="modal-img" id="modal-image" src="" alt="Imagem Ampliada">
+                <p id="modal-caption" class="modal-caption"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script2.js"></script>
+</body>
+</html>
